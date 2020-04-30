@@ -1,0 +1,22 @@
+@use '~bootswatch/dist/flatly/variables' as bootstrap;
+@use '~bootswatch/dist/darkly/variables' as darkly;
+
+$footer-height: 60px;
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  margin-bottom: $footer-height;
+}
+
+.footer {
+  background-color: bootstrap.$gray-200;
+  bottom: 0;
+  height: $footer-height;
+  line-height: $footer-height;
+  position: absolute;
+  width: 100%;
+}
