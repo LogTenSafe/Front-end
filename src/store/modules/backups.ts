@@ -1,7 +1,11 @@
 /* eslint-disable no-shadow */
 
-import { ActionTree, Dispatch, GetterTree, Module, MutationTree } from 'vuex'
-import { assign, concat, isNil, isNull, some } from 'lodash-es'
+import {
+  ActionTree, Dispatch, GetterTree, Module, MutationTree
+} from 'vuex'
+import {
+  assign, concat, isNil, isNull, some
+} from 'lodash-es'
 import * as ActionCable from 'actioncable'
 import { Backup, backupFromJSON, BackupJSON } from '@/types'
 import { BackupsState, RootState } from '@/store/types'

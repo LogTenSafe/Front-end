@@ -1,11 +1,13 @@
 import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '@/views/Home.vue'
-import SignUp from '@/views/SignUp.vue'
 import DownloadClient from '@/components/DownloadClient.vue'
-import ResetPassword from '@/views/ResetPassword.vue'
-import ForgotPassword from '@/views/ForgotPassword.vue'
-import EditAccount from '@/views/EditAccount.vue'
-import NotFound from '@/views/NotFound.vue'
+
+const BackupsIndex = () => import(/* webpackChunkName: "logged-in" */ '@/views/BackupsIndex.vue')
+const EditAccount = () => import(/* webpackChunkName: "logged-in" */ '@/views/EditAccount.vue')
+const Home = () => import(/* webpackChunkName: "logged-out" */ '@/views/Home.vue')
+const SignUp = () => import(/* webpackChunkName: "logged-out" */ '@/views/SignUp.vue')
+const ForgotPassword = () => import(/* webpackChunkName: "logged-out" */ '@/views/ForgotPassword.vue')
+const NotFound = () => import('@/views/NotFound.vue')
+const ResetPassword = () => import('@/views/ResetPassword.vue')
 
 const routes: Array<RouteConfig> = [
   {
@@ -21,7 +23,7 @@ const routes: Array<RouteConfig> = [
   {
     name: 'BackupsIndex',
     path: '/backups',
-    component: () => import(/* webpackChunkName: "backups" */ '@/views/BackupsIndex.vue')
+    component: BackupsIndex
   },
   {
     name: 'DownloadClient',

@@ -1,5 +1,8 @@
 /* eslint-disable no-param-reassign */
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const CompressionPlugin = require('compression-webpack-plugin')
+
 module.exports = {
   lintOnSave: false,
 
@@ -35,5 +38,9 @@ module.exports = {
 
       return options
     })
+
+    // speed up first load
+    config.plugins.delete('prefetch')
+    config.plugin('CompressionPlugin').use(CompressionPlugin)
   }
 }

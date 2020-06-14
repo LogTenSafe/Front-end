@@ -24,8 +24,11 @@
 <script lang="ts">
   import Vue from 'vue'
   import Component from 'vue-class-component'
+  import { BCard, BCardText } from 'bootstrap-vue'
 
-  @Component
+  @Component({
+    components: { BCard, BCardText }
+  })
   export default class MigrateWarning extends Vue {
   }
 </script>

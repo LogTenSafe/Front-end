@@ -20,17 +20,6 @@
                        v-bind="$attrs"
                        v-else-if="type === 'spinbutton'" />
 
-    <b-select :class="[klass, {'is-invalid': hasError}]"
-              :id="id"
-              :name="name"
-              :options="optionList"
-              :placeholder="$t(placeholderOrLabel, interpolations)"
-              :value="value"
-              @input="$emit('input', $event)"
-              v-bind="$attrs"
-              v-else-if="type === 'select'">
-    </b-select>
-
     <b-form-input :class="[klass, {'is-invalid': hasError}]"
                   :id="id"
                   :name="name"
