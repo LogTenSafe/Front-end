@@ -1,5 +1,7 @@
 /// <reference types="cypress-file-upload" />
 
+/* eslint-disable cypress/no-unnecessary-waiting */
+
 import { getStore } from '../support/utils'
 
 describe('Logged in', () => {
@@ -39,7 +41,24 @@ describe('Logged in', () => {
 
   it('downloads a backup')
 
+  it('uploads a backup from the Download Client page', () => {
+    cy.dataCy('downloadClientLink').click()
+    cy.fixture('LogTenCoreDataStore.sql', 'base64').then(data => {
+      cy.get('[data-cy=fileInput]').attachFile({
+        fileContent: data,
+        filePath: 'LogTenCoreDataStore.sql',
+        encoding: 'base64',
+        mimeType: 'application/octet-stream'
+      }, { subjectType: 'input' })
+      cy.get('.modal-footer .btn-primary').click()
+      cy.dataCy('homeLink').click()
+      cy.hash().should('eql', '#/backups')
+      cy.dataCy('totalHours').its('length').should('eq', 2)
+    })
+  })
+
   it('deletes a backup', () => {
+    cy.wait(500) // wait for the loadBackups call to run and re-establish the WebSockets connection
     cy.dataCy('deleteLink').click()
     cy.dataCy('backupsContainer').get('p.lead').should('contain', 'You’re ready to start backing up your logbook.')
   })

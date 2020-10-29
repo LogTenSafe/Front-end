@@ -26,10 +26,10 @@ job processor, and the WebSockets server. An example `Procfile` that
 accomplishes all this:
 
 ```
-backend: cd Backend && rvm 2.7.1@logtensafe exec rails server
+backend: cd Backend && rvm 2.7.2@logtensafe exec rails server
 frontend: cd Frontend && yarn serve
-jobs: cd Backend && rvm 2.7.1@logtensafe exec bundle exec sidekiq -C config/sidekiq.yml
-cable: cd Backend && rvm 2.7.1@logtensafe exec ./bin/cable
+jobs: cd Backend && rvm 2.7.2@logtensafe exec bundle exec sidekiq -C config/sidekiq.yml
+cable: cd Backend && rvm 2.7.2@logtensafe exec ./bin/cable
 mail: mailcatcher -f
 ```
 
@@ -43,10 +43,10 @@ full development stack to be launched to run. An example `Procfile` for running
 E2E tests:
 
 ```
-backend: cd Backend && rvm 2.7.1@logtensafe exec rails server -e cypress
+backend: cd Backend && rvm 2.7.2@logtensafe exec rails server -e cypress
 frontend: cd Frontend && yarn run test:e2e
-jobs: cd Backend && redis-cli flushall && rvm 2.7.1@logtensafe exec bundle exec sidekiq -C config/sidekiq.yml -e cypress
-cable: cd Backend && rvm 2.7.1@logtensafe exec ./bin/cable -e cypress
+jobs: cd Backend && redis-cli flushall && rvm 2.7.2@logtensafe exec bundle exec sidekiq -C config/sidekiq.yml -e cypress
+cable: cd Backend && rvm 2.7.2@logtensafe exec ./bin/cable -e cypress
 ```
 
 Deployment is done with the `deploy.sh` script, which simply compiles the

@@ -1,11 +1,13 @@
 <template>
   <b-navbar toggleable="lg" type="dark" variant="dark">
-    <b-navbar-brand :to="{name: 'Home'}">LogTenSafe</b-navbar-brand>
+    <b-navbar-brand :to="{name: 'Home'}" data-cy="homeLink">LogTenSafe</b-navbar-brand>
     <b-navbar-toggle target="nav-collapse" />
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav class="ml-auto">
-        <b-nav-item :to="{name: 'DownloadClient'}">{{$t('navbar.downloadClient')}}</b-nav-item>
+        <b-nav-item :to="{name: 'DownloadClient'}" data-cy="downloadClientLink">
+          {{$t('navbar.downloadClient')}}
+        </b-nav-item>
         <b-nav-item :to="{name: 'ChangePassword'}" data-cy="editUserLink" v-if="loggedIn">
           <strong>{{currentEmail}}</strong>
         </b-nav-item>

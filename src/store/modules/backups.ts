@@ -186,6 +186,8 @@ const actions: ActionTree<BackupsState, RootState> = {
   addBackup({ dispatch }, { body }: { body: FormData }): Promise<void> {
     return dispatch('requestJSON', { path: '/backups.json', method: 'post', body }).then(result => {
       if (!result.ok) return Promise.reject(result.val)
+
+      if (isNull(backupsSubscription)) dispatch('loadBackups', { page: 1 })
       return undefined
     })
   },
@@ -203,6 +205,7 @@ const actions: ActionTree<BackupsState, RootState> = {
     }).then(result => {
       if (result.ok) {
         commit('DELETE_BACKUP', { id })
+        if (isNull(backupsSubscription)) dispatch('loadBackups', { page: 1 })
         return undefined
       }
       return Promise.reject(result.val)
@@ -210,6 +213,7 @@ const actions: ActionTree<BackupsState, RootState> = {
   },
 
   backupsSubscriptionMessage({ commit }, { backupJSON }: { backupJSON: string }) {
+    console.log(backupJSON)
     commit('UPDATE_BACKUPS_FROM_SUBSCRIPTION', { backupJSON })
   }
 }
