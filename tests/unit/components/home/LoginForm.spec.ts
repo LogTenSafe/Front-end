@@ -1,5 +1,5 @@
 import { Wrapper } from '@vue/test-utils'
-import { SinonSpyStatic, SinonStub } from 'sinon'
+import { SinonStub } from 'sinon'
 import { expect } from 'chai'
 import { Err, Ok } from 'ts-results'
 import { mountComponent } from '../../utils/mount'

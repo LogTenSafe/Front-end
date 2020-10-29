@@ -1,6 +1,12 @@
 import { Result } from 'ts-results'
 import { Backup } from '@/types'
 
+/**
+ * The shape of validation errors received from the backend. A dictionary mapping field names to a
+ * list of their errors.
+ */
+export type Errors = Record<string, string[]>
+
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface RootState {
   // no root properties
@@ -31,9 +37,3 @@ export interface APIFailure {
 }
 
 export type APIResponse<T> = Result<APISuccess<T>, APIFailure>
-
-/**
- * The shape of validation errors received from the backend. A dictionary mapping field names to a
- * list of their errors.
- */
-export type Errors = Record<string, string[]>
