@@ -1,5 +1,4 @@
-import { ActionContext, StoreOptions } from 'vuex'
-import createLogger from 'vuex/dist/logger'
+import { ActionContext, createLogger, StoreOptions } from 'vuex'
 import { has, isNull, isString } from 'lodash-es'
 import { Err, Ok } from 'ts-results'
 import { APIResponse, RootState } from '@/store/types'

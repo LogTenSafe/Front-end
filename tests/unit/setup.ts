@@ -22,16 +22,23 @@ const localStorage = {
 
 let sandbox: SinonSandbox
 export const mockServer = getLocal()
+let serverRunning = false
 
 beforeEach(async () => {
   sandbox = Sinon.createSandbox()
   sandbox.replaceGetter(window, 'localStorage', () => localStorage)
+
+  if (serverRunning) await mockServer.stop()
   await mockServer.start(8080)
+  serverRunning = true
 })
 
 afterEach(async () => {
-  sandbox.restore()
-  await mockServer.stop()
+  if (serverRunning) {
+    sandbox.restore()
+    await mockServer.stop()
+    serverRunning = false
+  }
 })
 
 export function getSandbox(): SinonSandbox { return sandbox }
