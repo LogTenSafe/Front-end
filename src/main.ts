@@ -13,7 +13,7 @@ import '@/assets/styles/bootstrap.scss'
 import '@/assets/styles/sticky-footer.scss'
 import router from '@/router'
 
-if (process.env.NODE_ENV === 'production') {
+if (secrets.bugsnagAPIKey !== 'disable') {
   Bugsnag.start({
     apiKey: secrets.bugsnagAPIKey,
     plugins: [new BugsnagPluginVue(Vue)]
