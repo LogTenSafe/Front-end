@@ -45,11 +45,14 @@
 <script lang="ts">
   import Component, { mixins } from 'vue-class-component'
   import { Action } from 'vuex-class'
-  import { has } from 'lodash-es'
+  import { isString } from 'lodash-es'
+  import Bugsnag from '@bugsnag/js'
+  import { Result } from 'ts-results'
   import FormErrors from '../../mixins/FormErrors'
   import { Signup } from '../../types'
   import { APIFailure, APIResponse } from '../../store/types'
   import FieldWithErrors from '../../components/common/FieldWithErrors.vue'
+  import isResult = Result.isResult;
 
   @Component({
     components: { FieldWithErrors }
@@ -67,8 +70,17 @@
         const result = await this.signUp({ signup: this.signup })
         if (!result.ok) this.formErrors = (<APIFailure>result.val).body.errors ?? null
       } catch (error) {
-        if (has(error, 'val')) this.formErrors = (<APIFailure>error.val).body.errors ?? null
-        else this.formError = error.message
+        if (isResult(error)) {
+          this.formErrors = (<APIFailure>error.val).body.errors ?? null
+        } else if (error instanceof Error) {
+          this.formError = error.message
+          Bugsnag.notify(error)
+        } else if (isString(error)) {
+          this.formError = error
+          Bugsnag.notify(error)
+        } else {
+          throw error
+        }
       } finally {
         this.busy = false
         this.signup.password = ''
@@ -77,7 +89,3 @@
     }
   }
 </script>
-
-<style scoped>
-
-</style>

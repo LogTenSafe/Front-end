@@ -24,6 +24,7 @@
   import { Prop } from 'vue-property-decorator'
   import Bugsnag from '@bugsnag/js'
   import { Action } from 'vuex-class'
+  import { isString } from 'lodash-es'
   import { Backup } from '@/types'
 
   @Component
@@ -39,12 +40,22 @@
     async onDelete(): Promise<void> {
       try {
         await this.deleteBackup({ id: this.backup.id })
-      } catch (error) {
-        Bugsnag.notify(error)
-        await this.$bvModal.msgBoxOk(<string> this.$t('backup.deleteFailed'), {
-          bodyClass: 'text-danger',
-          headerClass: 'text-danger'
-        })
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          Bugsnag.notify(error)
+          await this.$bvModal.msgBoxOk(<string> this.$t('backup.deleteFailed'), {
+            bodyClass: 'text-danger',
+            headerClass: 'text-danger'
+          })
+        } else if (isString(error)) {
+          Bugsnag.notify(error)
+          await this.$bvModal.msgBoxOk(<string> this.$t('backup.deleteFailed'), {
+            bodyClass: 'text-danger',
+            headerClass: 'text-danger'
+          })
+        } else {
+          throw error
+        }
       }
     }
   }

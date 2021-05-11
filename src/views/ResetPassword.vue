@@ -43,7 +43,7 @@
   import { Action } from 'vuex-class'
   import { Result } from 'ts-results'
   import Bugsnag from '@bugsnag/js'
-  import { has } from 'lodash-es'
+  import { has, isString } from 'lodash-es'
   import Narrow from '@/components/common/Narrow.vue'
   import FormErrors from '@/mixins/FormErrors'
   import { Errors } from '@/store/types'
@@ -82,8 +82,15 @@
           await this.$router.push({ name: 'Home' })
         } else this.formErrors = result.val
       } catch (error) {
-        this.formError = error.message
-        Bugsnag.notify(error)
+        if (error instanceof Error) {
+          this.formError = error.message
+          Bugsnag.notify(error)
+        } else if (isString(error)) {
+          this.formError = error
+          Bugsnag.notify(error)
+        } else {
+          throw error
+        }
       }
     }
   }

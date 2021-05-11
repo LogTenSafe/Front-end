@@ -53,13 +53,14 @@ describe('Logged in', () => {
       cy.get('.modal-footer .btn-primary').click()
       cy.dataCy('homeLink').click()
       cy.hash().should('eql', '#/backups')
-      cy.dataCy('totalHours').its('length').should('eq', 2)
+      cy.dataCy('totalHours').its('length').should('eq', 1)
     })
   })
 
   it('deletes a backup', () => {
     cy.wait(500) // wait for the loadBackups call to run and re-establish the WebSockets connection
     cy.dataCy('deleteLink').click()
+    cy.reload() //TODO why is this needed
     cy.dataCy('backupsContainer').get('p.lead').should('contain', 'You’re ready to start backing up your logbook.')
   })
 

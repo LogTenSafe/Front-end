@@ -28,8 +28,8 @@
 
   @Component({
     components: {
- Jumbo, MigrateWarning, MustBeUnauthenticated, Narrow, LoginForm
-}
+      Jumbo, MigrateWarning, MustBeUnauthenticated, Narrow, LoginForm
+    }
   })
   export default class Home extends Vue {
   }

@@ -41,6 +41,7 @@
   import Component, { mixins } from 'vue-class-component'
   import { Action } from 'vuex-class'
   import { Result } from 'ts-results'
+  import { isString } from 'lodash-es'
   import { Login } from '@/types'
   import FieldWithErrors from '@/components/common/FieldWithErrors.vue'
   import FormErrors from '@/mixins/FormErrors'
@@ -66,7 +67,13 @@
         })
         if (!result.ok) this.formError = result.val
       } catch (error) {
-        this.formError = error
+        if (error instanceof Error) {
+          this.formError = error.message
+        } else if (isString(error)) {
+          this.formError = error
+        } else {
+          throw error
+        }
       } finally {
         this.busy = false
         this.login.password = ''
@@ -77,13 +84,13 @@
 
 <style lang="scss">
   #login-form {
-    input[type=email] {
+    input[type="email"] {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
       margin-bottom: -1px;
     }
 
-    input[type=password] {
+    input[type="password"] {
       border-top-left-radius: 0;
       border-top-right-radius: 0;
     }

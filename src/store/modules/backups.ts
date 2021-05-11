@@ -213,7 +213,6 @@ const actions: ActionTree<BackupsState, RootState> = {
   },
 
   backupsSubscriptionMessage({ commit }, { backupJSON }: { backupJSON: string }) {
-    console.log(backupJSON)
     commit('UPDATE_BACKUPS_FROM_SUBSCRIPTION', { backupJSON })
   }
 }

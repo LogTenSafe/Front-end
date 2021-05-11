@@ -32,7 +32,3 @@
   export default class MigrateWarning extends Vue {
   }
 </script>
-
-<style scoped>
-
-</style>

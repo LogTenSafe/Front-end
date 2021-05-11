@@ -33,6 +33,7 @@
   import { Action } from 'vuex-class'
   import { Result } from 'ts-results'
   import Bugsnag from '@bugsnag/js'
+  import { isString } from 'lodash-es'
   import { Errors } from '@/store/types'
   import FormErrors from '@/mixins/FormErrors'
   import Narrow from '@/components/common/Narrow.vue'
@@ -60,8 +61,15 @@
           this.formErrors = result.val
         }
       } catch (error) {
-        this.formError = error.message
-        Bugsnag.notify(error)
+        if (error instanceof Error) {
+          this.formError = error.message
+          Bugsnag.notify(error)
+        } else if (isString(error)) {
+          this.formError = error
+          Bugsnag.notify(error)
+        } else {
+          throw error
+        }
       }
     }
   }

@@ -16,7 +16,3 @@
   export default class Jumbo extends Vue {
   }
 </script>
-
-<style scoped>
-
-</style>
