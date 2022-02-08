@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-function,
-    mocha/no-top-level-hooks,mocha/no-exports */
+    mocha/no-top-level-hooks */
 
 import 'cross-fetch/polyfill'
 import chai from 'chai'

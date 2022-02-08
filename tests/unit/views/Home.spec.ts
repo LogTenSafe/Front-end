@@ -1,6 +1,6 @@
-import { expect } from 'chai'
 import { mountComponent } from '../utils/mount'
 import { getSandbox } from '../setup'
+import { expect } from 'chai'
 import Home from '@/views/Home.vue'
 
 describe('Home.vue', () => {

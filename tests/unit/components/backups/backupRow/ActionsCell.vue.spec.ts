@@ -1,8 +1,8 @@
+import { mountComponent } from '../../../utils/mount'
+import backups from '../../../../fixtures/allBackups'
 import { Wrapper } from '@vue/test-utils'
 import * as sinon from 'sinon'
 import { expect } from 'chai'
-import { mountComponent } from '../../../utils/mount'
-import backups from '../../../../fixtures/allBackups'
 import ActionsCell from '@/views/backups/backupRow/ActionsCell.vue'
 
 describe('ActionsCell.vue', () => {

@@ -1,7 +1,7 @@
-import { expect } from 'chai'
-import { assign } from 'lodash-es'
 import { mountComponent } from '../../../utils/mount'
 import backups from '../../../../fixtures/allBackups'
+import { expect } from 'chai'
+import { assign } from 'lodash-es'
 import LastFlightCell from '@/views/backups/backupRow/LastFlightCell.vue'
 
 describe('LastFlightCell.vue', () => {

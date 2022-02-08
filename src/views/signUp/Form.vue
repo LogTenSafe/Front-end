@@ -43,15 +43,15 @@
 </template>
 
 <script lang="ts">
+  import FormErrors from '../../mixins/FormErrors'
+  import { Signup } from '../../types'
+  import { APIFailure, APIResponse } from '../../store/types'
+  import FieldWithErrors from '../../components/common/FieldWithErrors.vue'
   import Component, { mixins } from 'vue-class-component'
   import { Action } from 'vuex-class'
   import { isString } from 'lodash-es'
   import Bugsnag from '@bugsnag/js'
   import { Result } from 'ts-results'
-  import FormErrors from '../../mixins/FormErrors'
-  import { Signup } from '../../types'
-  import { APIFailure, APIResponse } from '../../store/types'
-  import FieldWithErrors from '../../components/common/FieldWithErrors.vue'
   import isResult = Result.isResult;
 
   @Component({

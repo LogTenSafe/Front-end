@@ -1,8 +1,8 @@
+import { mountComponent } from '../../utils/mount'
+import { getSandbox } from '../../setup'
 import { expect } from 'chai'
 import { Wrapper } from '@vue/test-utils'
 import { SinonStub } from 'sinon'
-import { mountComponent } from '../../utils/mount'
-import { getSandbox } from '../../setup'
 import ManualUploadForm from '@/views/downloadClient/ManualUploadForm.vue'
 
 describe('ManualUploadForm.vue', () => {

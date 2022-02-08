@@ -18,6 +18,8 @@ if (secrets.bugsnagAPIKey !== 'disable') {
     apiKey: secrets.bugsnagAPIKey,
     plugins: [new BugsnagPluginVue(Vue)]
   })
+  const bugsnagVue = Bugsnag.getPlugin('vue')
+  if (bugsnagVue) bugsnagVue.installVueErrorHandler(Vue)
 
   Vue.config.productionTip = false
 }

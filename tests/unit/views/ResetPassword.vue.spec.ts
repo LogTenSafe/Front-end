@@ -1,8 +1,8 @@
+import { componentLocalVue } from '../utils'
+import { getSandbox } from '../setup'
 import { shallowMount } from '@vue/test-utils'
 import { Err, Ok } from 'ts-results'
 import { expect } from 'chai'
-import { componentLocalVue } from '../utils'
-import { getSandbox } from '../setup'
 import i18n from '@/i18n'
 import ResetPassword from '@/views/ResetPassword.vue'
 

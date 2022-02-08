@@ -1,9 +1,9 @@
+import { mountComponent } from '../../utils/mount'
+import { getSandbox } from '../../setup'
 import { Wrapper } from '@vue/test-utils'
 import { SinonStub } from 'sinon'
 import { expect } from 'chai'
 import { Err, Ok } from 'ts-results'
-import { mountComponent } from '../../utils/mount'
-import { getSandbox } from '../../setup'
 import LoginForm from '@/views/home/LoginForm.vue'
 
 describe('LoginForm.vue', () => {

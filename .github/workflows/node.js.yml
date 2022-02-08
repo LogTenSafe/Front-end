@@ -22,12 +22,12 @@ jobs:
         with:
           node-version: 16.x
           cache: "yarn"
-      - name: Install Dependencies
-        run: |
-          yarn install
-          npm install @vue/cli
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Install dependencies
+        run: yarn install
       - name: Unit Tests
-        run: yarn ci:unit
+        run: yarn run ci:unit
   lint:
     name: Run Linters
     runs-on: ubuntu-latest
@@ -40,11 +40,11 @@ jobs:
         with:
           node-version: 16.x
           cache: "yarn"
-      - name: Install Dependencies
-        run: |
-          yarn install
-          npm install @vue/cli
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Install dependencies
+        run: yarn install
       - name: Run ESLint
-        run: npx vue-cli-service lint
+        run: yarn run vue-cli-service lint
       - name: Run Stylelint
-        run: npx stylelint src/**/*.css src/**/*.vue
+        run: yarn run stylelint src/**/*.css src/**/*.vue
