@@ -4,7 +4,7 @@ import {
   ActionTree, Dispatch, GetterTree, Module, MutationTree
 } from 'vuex'
 import {
-  assign, concat, isNil, isNull, some
+  assign, clone, concat, isNil, isNull, some
 } from 'lodash-es'
 import * as ActionCable from 'actioncable'
 import { Backup, backupFromJSON, BackupJSON } from '@/types'
@@ -39,7 +39,7 @@ const getters: GetterTree<BackupsState, RootState> = {
   backups(state): Backup[] {
     return state.backupsLoading || isNull(state.backups)
       ? []
-      : state.backups.sort((a, b) => b.createdAt.diff(a.createdAt).as('seconds'))
+      : clone(state.backups).sort((a, b) => b.createdAt.diff(a.createdAt).as('seconds'))
   },
 
   /** @return Whether the Backup list is currently loading. */
