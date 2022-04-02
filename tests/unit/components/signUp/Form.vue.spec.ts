@@ -1,7 +1,7 @@
-import { mountComponent } from '../../utils/mount'
-import { getSandbox } from '../../setup'
 import { expect } from 'chai'
 import { Err, Ok } from 'ts-results'
+import { mountComponent } from '../../utils/mount'
+import { getSandbox } from '../../setup'
 import Form from '@/views/signUp/Form.vue'
 
 describe('signUp/Form.vue', () => {

@@ -23,8 +23,8 @@ describe('Logged out', () => {
     cy.dataCy('signupPasswordConfirmation').type('differentpw')
     cy.dataCy('signupSubmit').click()
 
-    cy.dataCy('user-password_confirmation-group').get('.invalid-feedback')
-      .should('contain', 'doesn’t match password')
+    cy.dataCy('user-password_confirmation-group').get('.invalid-feedback').
+      should('contain', 'doesn’t match password')
     cy.dataCy('signupPassword').should('have.value', '')
     cy.dataCy('signupPasswordConfirmation').should('have.value', '')
   })

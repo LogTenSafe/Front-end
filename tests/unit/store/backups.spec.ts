@@ -1,8 +1,8 @@
-import { backupsJSON, default as allBackups } from '../../fixtures/allBackups'
-import { mockServer } from '../setup'
 import Vuex, { Store } from 'vuex'
 import { expect } from 'chai'
 import { createLocalVue } from '@vue/test-utils'
+import nock from 'nock'
+import { backupsJSON, default as allBackups } from '../../fixtures/allBackups'
 import backups from '@/store/modules/backups'
 import { RootState } from '@/store/types'
 import root from '@/store/modules/root'
@@ -22,34 +22,43 @@ describe('Vuex: backups', () => {
 
   describe('loadBackups', () => {
     it('loads the first page of backups', async () => {
-      await mockServer.get('/backups.json').thenReply(200, JSON.stringify(backupsJSON))
+      const scope = nock('http://localhost:8080').
+        get('/backups.json').
+        query({ page: 1 }).
+        reply(200, backupsJSON)
+
       expect(await store.dispatch('loadBackups', {})).to.be.true
 
       expect(store.getters.backups).to.eql(allBackups)
       expect(store.getters.backupsLoading).to.be.false
       expect(store.getters.backupsError).to.be.null
+      expect(scope.isDone()).to.be.true
     })
 
     it('loads the next page of backups', async () => {
-      await mockServer.get('/backups.json').thenReply(
-        200,
-        JSON.stringify(backupsJSON.slice(0, 10)),
-        { 'X-Next-Page': '/backups.json?page=2' }
-      )
-      await mockServer.get('/backups.json').withQuery({ page: 2 }).thenReply(
-        200,
-        JSON.stringify(backupsJSON.slice(10, 20))
-      )
+      const scope = nock('http://localhost:8080').
+        get('/backups.json').
+        query({ page: 2 }).
+        reply(200, backupsJSON.slice(10, 20), {
+          'X-Next-Page': '/backups.json?page=2'
+        })
 
       expect(await store.dispatch('loadBackups', { page: 2 })).to.be.true
-      expect(store.getters.backups).to.eql(allBackups.slice(0, 10))
+      expect(store.getters.backups).to.eql(allBackups.slice(10, 20))
+      expect(scope.isDone()).to.be.true
     })
 
-    it('handles an HTTP error', async () => {
-      await mockServer.get('/backups.json').thenReply(404)
-      expect(store.dispatch('loadBackups', { restart: false }))
-        .to.eventually.throw('HTTP error: Not Found').then(() => {
-          expect(store.getters.backupsError).to.eql('HTTP error: Not Found')
+    it('handles an HTTP error', () => {
+      const scope = nock('http://localhost:8080').
+        get('/backups.json').
+        query({ page: 1 }).
+        reply(404, { error: 'not_found' })
+
+      return expect(store.dispatch('loadBackups', { restart: false })).
+        to.eventually.be.rejectedWith('not_found').
+        then(() => {
+          expect(store.getters.backupsError.toString()).to.eql('Error: not_found')
+          expect(scope.isDone()).to.be.true
         })
     })
   })

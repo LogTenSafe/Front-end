@@ -169,7 +169,8 @@ const actions: ActionTree<SessionState, RootState> = {
    */
 
   async forgotPassword(
-    { dispatch }: ActionContext<RootState, RootState>, { email }: { email: string }
+    { dispatch }: ActionContext<RootState, RootState>,
+    { email }: { email: string }
   ): Promise<Result<void, Errors>> {
     const response = await dispatch('request', {
       method: 'post',

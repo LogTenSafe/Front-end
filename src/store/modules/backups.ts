@@ -167,9 +167,9 @@ const actions: ActionTree<BackupsState, RootState> = {
           return true
         }
       } else {
-        const error = `HTTP error: ${result.val.response.statusText}`
+        const { error } = result.val.body
         commit('BACKUPS_ERROR', { error })
-        throw error
+        throw new Error(error)
       }
     }).catch(error => {
       commit('BACKUPS_ERROR', { error })

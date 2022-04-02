@@ -12,7 +12,9 @@
       "./support"
     ],
     "types":     [
-      "cypress"
+      "cypress",
+      "mocha",
+      "chai"
     ]
   },
   "include":         [

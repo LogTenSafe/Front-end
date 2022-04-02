@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Bugsnag from '@bugsnag/js'
+import Bugsnag, { Plugin } from '@bugsnag/js'
 import BugsnagPluginVue from '@bugsnag/plugin-vue'
 import InfiniteScroll from '@tygr/vue-infinite-scroll'
 import VueRouter from 'vue-router'
@@ -16,7 +16,7 @@ import router from '@/router'
 if (secrets.bugsnagAPIKey !== 'disable') {
   Bugsnag.start({
     apiKey: secrets.bugsnagAPIKey,
-    plugins: [new BugsnagPluginVue(Vue)]
+    plugins: [<Plugin> new BugsnagPluginVue(Vue)]
   })
   const bugsnagVue = Bugsnag.getPlugin('vue')
   if (bugsnagVue) bugsnagVue.installVueErrorHandler(Vue)

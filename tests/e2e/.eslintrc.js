@@ -5,11 +5,10 @@ module.exports = {
   env: {
     'cypress/globals': true
   },
+  rules: {
+    strict: 'off'
+  },
   extends: [
     'plugin:cypress/recommended'
-  ],
-  rules: {
-    strict: 'off',
-    'spaced-comment': 'off'
-  }
+  ]
 }

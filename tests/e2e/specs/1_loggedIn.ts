@@ -60,7 +60,7 @@ describe('Logged in', () => {
   it('deletes a backup', () => {
     cy.wait(500) // wait for the loadBackups call to run and re-establish the WebSockets connection
     cy.dataCy('deleteLink').click()
-    cy.reload() //TODO why is this needed
+    cy.reload() // TODO why is this needed
     cy.dataCy('backupsContainer').get('p.lead').should('contain', 'You’re ready to start backing up your logbook.')
   })
 
@@ -71,8 +71,8 @@ describe('Logged in', () => {
       cy.get('#user-new_password').type('password1234')
       cy.get('#user-password_confirmation').type('password123')
       cy.dataCy('changePasswordSubmit').click()
-      cy.dataCy('user-password_confirmation-group').get('.invalid-feedback')
-        .should('contain', 'doesn’t match password')
+      cy.dataCy('user-password_confirmation-group').get('.invalid-feedback').
+        should('contain', 'doesn’t match password')
     })
 
     it("changes the user's password", () => {
@@ -105,8 +105,8 @@ describe('Logged in', () => {
     it('sends a forgot-password email', () => {
       cy.get('#user-email').clear().type('cypress@example.com')
       cy.dataCy('forgotPasswordSubmit').click()
-      cy.dataCy('forgotPasswordSuccess')
-        .should('contain', 'Password reset email sent. Check your inbox!')
+      cy.dataCy('forgotPasswordSuccess').
+        should('contain', 'Password reset email sent. Check your inbox!')
     })
   })
 
@@ -116,8 +116,8 @@ describe('Logged in', () => {
       cy.get('#user-password').type('password123')
       cy.get('#user-password_confirmation').type('password123')
       cy.dataCy('resetPasswordSubmit').click()
-      cy.get('.modal-dialog .modal-content')
-        .should('contain', 'The Reset Password link you used is invalid or expired.')
+      cy.get('.modal-dialog .modal-content').
+        should('contain', 'The Reset Password link you used is invalid or expired.')
     })
 
     it('handles form errors', () => {
@@ -127,8 +127,8 @@ describe('Logged in', () => {
         cy.get('#user-password').type('password123')
         cy.get('#user-password_confirmation').type('password1234')
         cy.dataCy('resetPasswordSubmit').click()
-        cy.dataCy('user-password_confirmation-group').get('.invalid-feedback')
-          .should('contain', 'doesn’t match password')
+        cy.dataCy('user-password_confirmation-group').get('.invalid-feedback').
+          should('contain', 'doesn’t match password')
       })
     })
 

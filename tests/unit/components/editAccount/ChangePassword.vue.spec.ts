@@ -1,7 +1,7 @@
-import { componentLocalVue } from '../../utils'
 import { shallowMount } from '@vue/test-utils'
 import { Ok } from 'ts-results'
 import { expect } from 'chai'
+import { componentLocalVue } from '../../utils'
 import i18n from '@/i18n'
 import ChangePassword from '@/views/editAccount/ChangePassword.vue'
 
