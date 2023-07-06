@@ -1,44 +1,48 @@
 <template>
   <b-form @submit.prevent="onSubmit" id="change-password-form">
-    <field-with-errors :errors="formErrors"
-                       autocomplete="current-password"
-                       field="current_password"
-                       form-group-class="mb-0"
-                       label="changePassword.currentPasswordPlaceholder"
-                       object="user"
-                       required
-                       sr-only
-                       type="password"
-                       v-model="currentPassword" />
+    <field-with-errors
+      :errors="formErrors"
+      autocomplete="current-password"
+      field="current_password"
+      form-group-class="mb-0"
+      label="changePassword.currentPasswordPlaceholder"
+      object="user"
+      required
+      sr-only
+      type="password"
+      v-model="currentPassword" />
 
-    <field-with-errors :errors="formErrors"
-                       autocomplete="current-password"
-                       field="new_password"
-                       form-group-class="my-0"
-                       label="changePassword.newPasswordPlaceholder"
-                       object="user"
-                       required
-                       sr-only
-                       type="password"
-                       v-model="newPassword" />
+    <field-with-errors
+      :errors="formErrors"
+      autocomplete="current-password"
+      field="new_password"
+      form-group-class="my-0"
+      label="changePassword.newPasswordPlaceholder"
+      object="user"
+      required
+      sr-only
+      type="password"
+      v-model="newPassword" />
 
-    <field-with-errors :errors="formErrors"
-                       autocomplete="current-password"
-                       field="password_confirmation"
-                       form-group-class="mt-0"
-                       label="changePassword.confirmationPlaceholder"
-                       object="user"
-                       required
-                       sr-only
-                       type="password"
-                       v-model="passwordConfirmation" />
+    <field-with-errors
+      :errors="formErrors"
+      autocomplete="current-password"
+      field="password_confirmation"
+      form-group-class="mt-0"
+      label="changePassword.confirmationPlaceholder"
+      object="user"
+      required
+      sr-only
+      type="password"
+      v-model="passwordConfirmation" />
 
     <p class="text-danger" v-if="formError">{{formError}}</p>
 
-    <b-button class="mb-2 mr-sm-2 mb-sm-0"
-              data-cy="changePasswordSubmit"
-              type="submit"
-              variant="primary">
+    <b-button
+      class="mb-2 mr-sm-2 mb-sm-0"
+      data-cy="changePasswordSubmit"
+      type="submit"
+      variant="primary">
       {{$t('changePassword.button')}}
     </b-button>
 

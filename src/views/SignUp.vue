@@ -9,7 +9,7 @@
           <signup-form />
 
           <p>
-            <router-link :to="{name: 'Home'}">{{$t('signup.haveAccount')}}</router-link>
+            <router-link :to="{ name: 'Home' }">{{$t('signup.haveAccount')}}</router-link>
           </p>
         </b-col>
         <b-col />

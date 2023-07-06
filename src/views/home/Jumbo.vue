@@ -1,7 +1,8 @@
 <template>
-  <b-jumbotron :header="$t('home.jumbotron.header')"
-               :lead="$t('home.jumbotron.lead')"
-               header-level="5">
+  <b-jumbotron
+    :header="$t('home.jumbotron.header')"
+    :lead="$t('home.jumbotron.lead')"
+    header-level="5">
     <b-button :to="{ name: 'SignUp' }" data-cy="getStarted" size="lg" variant="primary">
       {{$t('home.getStartedButton')}}
     </b-button>

@@ -2,10 +2,11 @@
   <div>
     <i18n class="m-0" path="backup.download" tag="p" v-if="backup.downloadURL && backup.logbook">
       <template #link>
-        <a :href="backup.downloadURL"
-           @click="onDownload"
-           data-cy="downloadLink"
-           download="LogTenCoreDataStore.sql">
+        <a
+          :href="backup.downloadURL"
+          @click="onDownload"
+          data-cy="downloadLink"
+          download="LogTenCoreDataStore.sql">
           {{$t('backup.downloadLink')}}
         </a>
       </template>

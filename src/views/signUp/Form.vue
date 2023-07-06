@@ -1,38 +1,41 @@
 <template>
   <b-form @submit.prevent="onSubmit" class="mt-5 mb-3">
-    <field-with-errors :errors="formErrors"
-                       autocomplete="username"
-                       data-cy="signupEmail"
-                       field="email"
-                       form-group-class="mt-2"
-                       label="signup.email"
-                       object="user"
-                       required
-                       sr-only
-                       type="email"
-                       v-model="signup.email" />
+    <field-with-errors
+      :errors="formErrors"
+      autocomplete="username"
+      data-cy="signupEmail"
+      field="email"
+      form-group-class="mt-2"
+      label="signup.email"
+      object="user"
+      required
+      sr-only
+      type="email"
+      v-model="signup.email" />
 
-    <field-with-errors :errors="formErrors"
-                       autocomplete="current-password"
-                       data-cy="signupPassword"
-                       field="password"
-                       label="signup.password"
-                       object="user"
-                       required
-                       sr-only
-                       type="password"
-                       v-model="signup.password" />
+    <field-with-errors
+      :errors="formErrors"
+      autocomplete="current-password"
+      data-cy="signupPassword"
+      field="password"
+      label="signup.password"
+      object="user"
+      required
+      sr-only
+      type="password"
+      v-model="signup.password" />
 
-    <field-with-errors :errors="formErrors"
-                       autocomplete="current-password"
-                       data-cy="signupPasswordConfirmation"
-                       field="password_confirmation"
-                       label="signup.passwordConfirmation"
-                       object="user"
-                       required
-                       sr-only
-                       type="password"
-                       v-model="signup.passwordConfirmation" />
+    <field-with-errors
+      :errors="formErrors"
+      autocomplete="current-password"
+      data-cy="signupPasswordConfirmation"
+      field="password_confirmation"
+      label="signup.passwordConfirmation"
+      object="user"
+      required
+      sr-only
+      type="password"
+      v-model="signup.passwordConfirmation" />
 
     <b-button :disabled="busy" data-cy="signupSubmit" type="submit">
       {{$t('signup.submit')}}

@@ -33,7 +33,7 @@
     components: { ManualUploadForm }
   })
   export default class DownloadClient extends Vue {
-    @Getter loggedIn!: boolean;
+    @Getter loggedIn!: boolean
   }
 </script>
 

@@ -2,10 +2,11 @@
   <b-row>
     <b-col />
     <b-col cols="8">
-      <b-card border-variant="danger"
-              class="mt-5 mb-5"
-              text-variant="danger"
-              title="Can’t log in? Please read this.">
+      <b-card
+        border-variant="danger"
+        class="mt-5 mb-5"
+        text-variant="danger"
+        title="Can’t log in? Please read this.">
         <b-card-text>Important! Everything has been moved to a brand-new
           website. The new website requires an email address to log in (so
           that I can help you if you need to reset your password, or find

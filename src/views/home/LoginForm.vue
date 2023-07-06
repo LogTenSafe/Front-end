@@ -1,28 +1,30 @@
 <template>
   <b-form @submit.prevent.stop="onSubmit" id="login-form">
-    <field-with-errors :errors="formErrors"
-                       autocomplete="username"
-                       data-cy="loginEmail"
-                       field="email"
-                       form-group-class="mb-0 mt-3"
-                       label="home.loginForm.email"
-                       object="user"
-                       required
-                       sr-only
-                       type="email"
-                       v-model="login.email" />
+    <field-with-errors
+      :errors="formErrors"
+      autocomplete="username"
+      data-cy="loginEmail"
+      field="email"
+      form-group-class="mb-0 mt-3"
+      label="home.loginForm.email"
+      object="user"
+      required
+      sr-only
+      type="email"
+      v-model="login.email" />
 
-    <field-with-errors :errors="formErrors"
-                       autocomplete="current-password"
-                       data-cy="loginPassword"
-                       field="password"
-                       form-group-class="mt-0"
-                       label="home.loginForm.password"
-                       object="user"
-                       required
-                       sr-only
-                       type="password"
-                       v-model="login.password" />
+    <field-with-errors
+      :errors="formErrors"
+      autocomplete="current-password"
+      data-cy="loginPassword"
+      field="password"
+      form-group-class="mt-0"
+      label="home.loginForm.password"
+      object="user"
+      required
+      sr-only
+      type="password"
+      v-model="login.password" />
 
     <p class="text-danger" data-cy="loginError" v-if="formError">{{formError}}</p>
 
@@ -30,7 +32,7 @@
       <b-button :disabled="busy" data-cy="loginSubmit" type="submit" variant="primary">
         {{$t('home.loginForm.submit')}}
       </b-button>
-      <b-button :to="{name: 'ForgotPassword'}" data-cy="forgotPasswordLink" variant="link">
+      <b-button :to="{ name: 'ForgotPassword' }" data-cy="forgotPasswordLink" variant="link">
         {{$t('home.loginForm.forgotPassword')}}
       </b-button>
     </b-button-toolbar>

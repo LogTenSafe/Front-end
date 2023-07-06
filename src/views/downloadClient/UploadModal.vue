@@ -1,8 +1,9 @@
 <template>
-  <b-modal :title="$t('downloadClient.uploadingModal.title')"
-           data-cy="uploadingModal"
-           id="uploading"
-           ok-only>
+  <b-modal
+    :title="$t('downloadClient.uploadingModal.title')"
+    data-cy="uploadingModal"
+    id="uploading"
+    ok-only>
     <p v-if="uploadComplete">{{$t('downloadClient.uploadingModal.complete')}}</p>
     <p class="text-danger" v-else-if="uploadError">
       {{$t('downloadClient.uploadingModal.failed')}}

@@ -1,10 +1,11 @@
 <template>
   <form ref="manualUploadForm">
-    <input @change="uploadFile"
-           data-cy="fileInput"
-           name="backup[logbook]"
-           type="file"
-           aria-label="Upload File" />
+    <input
+      @change="uploadFile"
+      data-cy="fileInput"
+      name="backup[logbook]"
+      type="file"
+      aria-label="Upload File" />
     <input name="backup[hostname]" type="hidden" value="LogTenSafe.com" />
     <p>
       <i18n class="mt-5" path="downloadClient.manualUpload" tag="small">

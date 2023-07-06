@@ -13,7 +13,7 @@
 
       <template #table-busy>
         <div class="text-center my-2">
-          <b-spinner class="align-middle"></b-spinner>
+          <b-spinner class="align-middle" />
           <strong>{{$t('backups.loading')}}</strong>
         </div>
       </template>
@@ -38,11 +38,12 @@
       </template>
     </b-table>
 
-    <b-pagination :per-page="perPage"
-                  :total-rows="backupsCount"
-                  aria-controls="backups-table"
-                  v-if="showPagination"
-                  v-model="page" />
+    <b-pagination
+      :per-page="perPage"
+      :total-rows="backupsCount"
+      aria-controls="backups-table"
+      v-if="showPagination"
+      v-model="page" />
   </div>
 </template>
 

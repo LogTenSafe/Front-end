@@ -1,34 +1,37 @@
 <template>
   <b-form-group :class="formGroupClass" :data-cy="cypressGroupName">
-    <label :class="{'sr-only': srOnly}" :for="id">{{$t(label, interpolations)}}</label>
+    <label :class="{ 'sr-only': srOnly }" :for="id">{{$t(label, interpolations)}}</label>
 
-    <b-form-file :class="[klass, {'is-invalid': hasError}]"
-                 :id="id"
-                 :name="name"
-                 :placeholder="$t(placeholderOrLabel, interpolations)"
-                 :value="value"
-                 @input="$emit('input', $event)"
-                 v-bind="$attrs"
-                 v-if="type === 'file'" />
+    <b-form-file
+      :class="[klass, { 'is-invalid': hasError }]"
+      :id="id"
+      :name="name"
+      :placeholder="$t(placeholderOrLabel, interpolations)"
+      :value="value"
+      @input="$emit('input', $event)"
+      v-bind="$attrs"
+      v-if="type === 'file'" />
 
-    <b-form-spinbutton :class="[klass, {'is-invalid': hasError}]"
-                       :id="id"
-                       :name="name"
-                       :placeholder="$t(placeholderOrLabel, interpolations)"
-                       :value="value"
-                       @input="$emit('input', $event)"
-                       v-bind="$attrs"
-                       v-else-if="type === 'spinbutton'" />
+    <b-form-spinbutton
+      :class="[klass, { 'is-invalid': hasError }]"
+      :id="id"
+      :name="name"
+      :placeholder="$t(placeholderOrLabel, interpolations)"
+      :value="value"
+      @input="$emit('input', $event)"
+      v-bind="$attrs"
+      v-else-if="type === 'spinbutton'" />
 
-    <b-form-input :class="[klass, {'is-invalid': hasError}]"
-                  :id="id"
-                  :name="name"
-                  :placeholder="$t(placeholderOrLabel, interpolations)"
-                  :type="type"
-                  :value="value"
-                  @input="$emit('input', $event)"
-                  v-bind="$attrs"
-                  v-else />
+    <b-form-input
+      :class="[klass, { 'is-invalid': hasError }]"
+      :id="id"
+      :name="name"
+      :placeholder="$t(placeholderOrLabel, interpolations)"
+      :type="type"
+      :value="value"
+      @input="$emit('input', $event)"
+      v-bind="$attrs"
+      v-else />
 
     <div :key="index" class="invalid-feedback" v-for="(error, index) in fieldErrors">
       {{error}}
